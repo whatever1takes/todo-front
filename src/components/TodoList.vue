@@ -19,10 +19,62 @@
 
 <script setup>
 import { ref } from 'vue'
+import axios from 'axios'
+import { ElMessage } from 'element-plus'
+
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:8080',
+    timeout: 50
+})
 
 const newTodo = ref('')
 const todos = ref([])
+const fetchTodos = async () => {
+    try {
+        const response = await axiosInstance.get('/api/todos')
+        todos.value = response.data
+    } catch (error) {
+        ElMessage.error("查询待办事项失败")
+        console.error(error)
+    }
+}
+const newTodos = async () => {
+    if (newTodo.value.trim() === '') return
 
+    try {
+        const response = await axiosInstance.post('/api/todos',
+            {
+                title: newTodo.value,
+                completed: false
+            }
+        )
+        todos.value.push(response.data)
+        newTodo.value = ''
+        ElMessage.success("创建待办事项成功")
+    } catch (error) {
+        ElMessage.error("创建待办事项失败")
+        console.error(error)
+    }
+}
+
+const updateTodos = async () => {
+    if (newTodo.value.trim() === '') return
+
+    try {
+        const response = await axiosInstance.put('/api/todos',
+            {
+                title: newTodo.value,
+                completed: false
+            }
+        )
+        todos.value.push(response.data)
+        newTodo.value = ''
+        ElMessage.success("创建待办事项成功")
+    } catch (error) {
+        ElMessage.error("创建待办事项失败")
+        console.error(error)
+    }
+}
 
 </script>
 
