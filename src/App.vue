@@ -1,7 +1,11 @@
 <template>
-  <div class="todo-app">
-    shiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiit
-    <TodoList></TodoList>
+  <div id="app">
+    <el-container>
+      <el-main>
+        <TodoList />
+
+      </el-main>
+    </el-container>
 
   </div>
 </template>
