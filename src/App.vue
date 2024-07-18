@@ -1,17 +1,8 @@
 <template>
-  <div id="app">
-    <el-container>
-      <el-main>
-        <TodoList />
-
-      </el-main>
-    </el-container>
-
-  </div>
+  <router-view></router-view>
 </template>
 
 <script setup>
-import TodoList from './components/TodoList.vue'
 </script>
 
 <style scoped></style>

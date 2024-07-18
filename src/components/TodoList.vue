@@ -17,11 +17,9 @@
             <el-button class="todo-button" @click="toggleComplete(todo)" :type="todo.completed ? 'success' : 'info'">
               {{ todo.completed ? "已完成" : "未完成" }}
             </el-button>
-            <el-button  @click="deleteTodo(todo)" :type='danger'>
-              删除
+            <el-button @click="deleteTodo(todo)" type="danger" icon="el-icon-delete" circle>
             </el-button>
           </div>
-
         </p>
       </div>
       <div v-else class="no-todos">暂无代办事项</div>
@@ -37,7 +35,7 @@ import {ElMessage} from 'element-plus'
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8080',
-  timeout: 50
+  timeout: 5000
 })
 
 const newTodo = ref('')
