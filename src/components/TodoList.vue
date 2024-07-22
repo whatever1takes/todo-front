@@ -1,5 +1,11 @@
 <template>
+  <el-page-header @back="goBack">
+    <template #content>
+      <span class="text-large font-600 mr-3"> TODO List </span>
+    </template>
+  </el-page-header>
   <div class="todo-app">
+
     <el-card class="todo-card" shadow="always" :body-style="{ padding: '20px' }" style="max-width: 480px">
       <template #header>
         <div class="todo-header">
@@ -32,7 +38,14 @@
 import {onMounted, ref} from 'vue'
 import axios from 'axios'
 import {ElMessage} from 'element-plus'
+import {useRouter} from "vue-router";
 
+const router = useRouter();
+
+const goBack = () => {
+  console.log('go back');
+  router.go(-1); // 使用 Vue Router 返回上一页
+}
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8080',
   timeout: 5000
@@ -95,12 +108,44 @@ onMounted(fetchTodos)
 </script>
 
 <style scoped>
+.page-container {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.el-page-header {
+  display: flex;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.el-page-header__left {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.el-page-header__title {
+  font-size: 16px;
+  color: #333;
+}
+
+.el-page-header__content {
+  font-size: 18px;
+  color: #666;
+  font-weight: bold;
+}
+
 .todo-app {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f2f5;
+  background-color: white;
   padding: 20px;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
