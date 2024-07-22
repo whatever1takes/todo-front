@@ -5,8 +5,7 @@
     </template>
   </el-page-header>
   <div class="todo-app">
-
-    <el-card class="todo-card" shadow="always" :body-style="{ padding: '20px' }" style="max-width: 480px">
+    <el-card class="todo-card" shadow="never" :body-style="{ padding: '20px' }" style="max-width: 480px">
       <template #header>
         <div class="todo-header">
           待办事项
@@ -20,17 +19,18 @@
         <p v-for="todo in todos" :key="todo.id" class="todo-item">
           <div class="todo-item-actions">
             <div class="todo-item-title">{{ todo.title }}</div>
-            <el-button class="todo-button" @click="toggleComplete(todo)" :type="todo.completed ? 'success' : 'info'">
-              {{ todo.completed ? "已完成" : "未完成" }}
-            </el-button>
-            <el-button @click="deleteTodo(todo)" type="danger" icon="el-icon-delete" circle>
-            </el-button>
+            <div class="actions-right">
+              <el-button class="todo-button" @click="toggleComplete(todo)" :type="todo.completed ? 'success' : 'info'">
+                {{ todo.completed ? "已完成" : "未完成" }}
+              </el-button>
+              <el-button @click="deleteTodo(todo)" type="danger" :icon="Delete" circle>
+              </el-button>
+            </div>
           </div>
         </p>
       </div>
       <div v-else class="no-todos">暂无代办事项</div>
     </el-card>
-
   </div>
 </template>
 
@@ -39,6 +39,7 @@ import {onMounted, ref} from 'vue'
 import axios from 'axios'
 import {ElMessage} from 'element-plus'
 import {useRouter} from "vue-router";
+import {Delete} from "@element-plus/icons";
 
 const router = useRouter();
 
@@ -143,7 +144,7 @@ onMounted(fetchTodos)
 .todo-app {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 100vh;
   background-color: white;
   padding: 20px;
@@ -155,7 +156,7 @@ onMounted(fetchTodos)
   width: 100%;
   max-width: 500px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
   background-color: #ffffff;
 }
 
@@ -180,7 +181,6 @@ onMounted(fetchTodos)
 }
 
 .el-input {
-
   flex: 1;
 }
 
@@ -222,6 +222,14 @@ onMounted(fetchTodos)
 .todo-item-actions {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%; /* 确保 actions 容器占据整个宽度 */
+}
+
+.actions-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* 使按钮靠右对齐 */
 }
 
 .no-todos {

@@ -1,16 +1,16 @@
-<script setup>
-</script>
-
 <template>
   <div class="home-container">
-    <h1 class="home-title">Home Page</h1>
+    <h1 class="home-title">游戏选择</h1>
     <div class="links-container">
-      <router-link to="/todolist" class="link">Go to Todos</router-link>
-      <router-link to="/counter" class="link">Go to Counter</router-link>
-      <router-link to="/game" class="link">Go to Game</router-link>
+      <router-link to="/game/number-guessing" class="link">猜数字游戏</router-link>
+      <router-link to="/game/snake" class="link">贪吃蛇游戏</router-link>
+      <router-link to="/game/sokoban" class="link">推箱子游戏</router-link>
     </div>
   </div>
 </template>
+
+<script setup>
+</script>
 
 <style scoped>
 .home-container {
