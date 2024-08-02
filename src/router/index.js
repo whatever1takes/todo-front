@@ -2,10 +2,11 @@ import {createRouter, createWebHistory} from "vue-router";
 import Home from "../components/Home.vue";
 import TodoList from "../components/TodoList.vue";
 import Counter from "../components/Counter.vue";
-import NumberGuessingGame from "../components/NumberGuessingGame.vue";
-import SnakeGame from "../components/SnakeGame.vue";
+import NumberGuessingGame from "../components/Game/NumberGuessingGame.vue";
+import SnakeGame from "../components/Game/SnakeGame.vue";
 import GameSelection from "../components/GameSelection.vue";
-import SokobanGame from "../components/SokobanGame.vue";
+import SokobanGame from "../components/Game/SokobanGame.vue";
+import Debug from "../components/Debug.vue";
 
 
 const routes = [
@@ -43,6 +44,11 @@ const routes = [
         path: '/game/sokoban',
         name: 'SokobanGame',
         component: SokobanGame
+    },
+    {
+        path: '/debug',
+        name: 'Debug',
+        component: Debug
     },
 
 ]

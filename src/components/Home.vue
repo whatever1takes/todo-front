@@ -8,6 +8,8 @@
       <router-link to="/todolist" class="link">Go to Todos</router-link>
       <router-link to="/counter" class="link">Go to Counter</router-link>
       <router-link to="/game" class="link">Go to Game</router-link>
+      <router-link to="/debug" class="link">Go to Debug</router-link>
+
     </div>
   </div>
 </template>
