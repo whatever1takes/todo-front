@@ -131,19 +131,22 @@ const onAddItem = () => {
     zip: 'CA 90036',
   })
 }
-const enableEdit = (row: number) => {
-  employees.value[row].editing = true;
-  console.log(row)
-  console.log(employees.value[row])
+const enableEdit = (index: number) => {
+  console.log("index:" + index)
+  employees.value[index].editing = true;
+  console.log("pre_row:" + employees.value[index])
 };
-const saveEdit = async (row: number) => {
-  employees.value[row].editing = false;
-  try {
-    await axiosInstance.put(`/api/v2/employee/${employees.value[row].id}`, row);
-    console.log('Employee updated successfully');
-  } catch (error) {
-    console.error('Error updating employee:', error);
-  }
+const saveEdit = async (row: any, index: number) => {
+  console.log("index:" + index)
+  console.log("nxt_row:" + employees.value[index])
+
+  employees.value[index].editing = false;
+  // try {
+  //   await axiosInstance.put(`/api/v2/employee/${employees.value[row].id}`, row);
+  //   console.log('Employee updated successfully');
+  // } catch (error) {
+  //   console.error('Error updating employee:', error);
+  // }
 };
 
 
@@ -192,7 +195,12 @@ onMounted(fetchEmployees)
   <slot-demo class="slot-demo">:-)</slot-demo>
   <el-table :data="employees" style="width: 100%" max-height="500">
     <el-table-column fixed prop="birthday" label="Date" width="150"/>
-    <el-table-column prop="name" label="Name" width="200"/>
+    <el-table-column prop="name" label="Name" width="200">
+      <template #default="scope">
+        <span v-if="!scope.row.editing" @click="enableEdit(scope.$index)">{{ scope.row.name }}</span>
+        <el-input v-else v-model="scope.row.name" @blur="saveEdit(scope.row,scope.$index)"/>
+      </template>
+    </el-table-column>
     <el-table-column prop="age" label="Age" width="120"/>
     <el-table-column prop="salary" label="Salary" width="200"/>
     <el-table-column prop="address" label="Address" width="600"/>
