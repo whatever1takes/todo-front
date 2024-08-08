@@ -49,11 +49,13 @@ const isAvailable = ref(true);
   <FunnyButton/>
   <FunnyButton/>
   <FunnyButton> 这是传到slot的内容!</FunnyButton>
+  <div>
+    <input
+        id="is-available"
+        v-model="isAvailable"
+        type="checkbox"
+    >
+    <label for="is-available">这是一个checkbox</label>
+  </div>
 
-  <input
-      id="is-available"
-      v-model="isAvailable"
-      type="checkbox"
-  >
-  <label for="is-available">这是一个checkbox</label>
 </template>
