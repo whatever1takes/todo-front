@@ -9,6 +9,7 @@
       <router-link to="/counter" class="link">Go to Counter</router-link>
       <router-link to="/game" class="link">Go to Game</router-link>
       <router-link to="/debug" class="link">Go to Debug</router-link>
+      <router-link to="/debug2" class="link">Go to Debug2</router-link>
 
     </div>
   </div>

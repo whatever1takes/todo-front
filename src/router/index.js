@@ -7,6 +7,7 @@ import SnakeGame from "../components/Game/SnakeGame.vue";
 import GameSelection from "../components/GameSelection.vue";
 import SokobanGame from "../components/Game/SokobanGame.vue";
 import Debug from "../components/Debug.vue";
+import Debug2 from "../components/Debug2/Debug2.vue";
 
 
 const routes = [
@@ -50,7 +51,11 @@ const routes = [
         name: 'Debug',
         component: Debug
     },
-
+    {
+        path: '/debug2',
+        name: 'Debug2',
+        component: Debug2
+    },
 ]
 
 const router = createRouter({
